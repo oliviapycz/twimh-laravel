@@ -1,4 +1,3 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -6,9 +5,99 @@
 @import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+#smoothscroll {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+.landingpage {
+  min-height: calc(100vh - 56px);
+  align-items: center;
+  background-image: url("../images/myanmar.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  opacity: 0.8;
+  color: white;
+
+  section {
+    padding-top: calc(50vh - 123px);
+  }
+
+  section img {
+    height: 75px;
+    width: 75px;
+  }
+}
+
+.lasttrips {
+  min-height: 100vh;
+}
+
+.title-section {
+  border-bottom: 2px solid brown;
+  padding-top: 1vh;
+}
+/******MOBILE FIRST******/
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+h3 {
+  font-size: 1.4rem;
+}
+h4 {
+  font-size: 1.2rem;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
+  font-size: 0.8rem;
+}
+p {
+  font-size: 0.7rem;
+}
+/******DESKTOP******/
+@media (min-width: 640px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2.4rem;
+  }
+  h3 {
+    font-size: 2.1rem;
+  }
+  h4 {
+    font-size: 1.8rem;
+  }
+  h5 {
+    font-size: 1.5rem;
+  }
+  h6 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+
+  .landingpage {
+    section {
+      padding-top: calc(50vh - 123px);
+    }
+    section img {
+      height: 150px;
+      width: 150px;
+    }
+  }
 }
