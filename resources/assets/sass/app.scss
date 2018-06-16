@@ -39,11 +39,36 @@
 
 .lasttrips {
   min-height: 100vh;
+  .card-header {
+    padding: 0.25rem 1.25rem;
+    p {
+      margin-bottom: 0px;
+    }
+  }
+  .card-body {
+    padding: 0.50rem 1.25rem;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 1.25rem;
+    p {
+      margin-bottom: 0px;
+    }
+  }
 }
 
 .title-section {
   border-bottom: 2px solid brown;
   padding-top: 1vh;
+}
+
+.card {
+  margin-top: 2vh;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between
 }
 /******MOBILE FIRST******/
 h1 {

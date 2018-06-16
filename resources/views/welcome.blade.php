@@ -14,9 +14,5 @@
             <a href="#lasttrips"><img src="{{URL::asset('/images/mouse.png')}}" alt="mouse"></a>
         </section>
     </div>
-    <div class="container-fluid lasttrips">
-        <section id="lasttrips" class="title-section">
-            <h2>Derniers Voyages</h2>
-        </section>
-    </div>
+    @include('homepage.lasttrips')
 @endsection
