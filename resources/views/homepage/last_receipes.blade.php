@@ -1,6 +1,6 @@
 <div class="container-fluid lasttrips">
     <section id="lasttrips" class="title-section">
-        <h2>Derniers Voyages</h2>
+        <h2>Dernières Recettes</h2>
     </section>
     <div class="row justify-content-center">
 

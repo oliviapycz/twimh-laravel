@@ -20,5 +20,5 @@
         </div>
     </div>
 </div>
-@include('dashboard.post')
+@include('dashboard.user_posts')
 @endsection

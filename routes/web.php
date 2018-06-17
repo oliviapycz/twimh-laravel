@@ -12,13 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('profile', 'UserController@profile')->name('profile');
 
 Route::post('profile', 'UserController@update_avatar');
+
+Route::resource('posts', 'PostsController');

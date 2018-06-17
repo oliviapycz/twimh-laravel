@@ -10444,23 +10444,19 @@ a.text-dark:focus {
   width: 75px;
 }
 
-.lasttrips {
-  min-height: 100vh;
-}
-
-.lasttrips .card-header {
+.card-header {
   padding: 0.25rem 1.25rem;
 }
 
-.lasttrips .card-header p {
+.card-header p {
   margin-bottom: 0px;
 }
 
-.lasttrips .card-body {
+.card-body {
   padding: 0.50rem 1.25rem;
 }
 
-.lasttrips .card-footer {
+.card-footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10470,8 +10466,12 @@ a.text-dark:focus {
   padding: 0.25rem 1.25rem;
 }
 
-.lasttrips .card-footer p {
+.card-footer p {
   margin-bottom: 0px;
+}
+
+.lasttrips {
+  min-height: 100vh;
 }
 
 .title-section {
@@ -10551,6 +10551,10 @@ p {
 
   p {
     font-size: 1rem;
+  }
+
+  main {
+    min-height: calc(100vh - 56px);
   }
 
   .landingpage section {
