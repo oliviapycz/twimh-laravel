@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('homepage');
 });
+Route::get('/', 'HomepageController@index');
 
 Auth::routes();
 
@@ -23,4 +24,10 @@ Route::get('profile', 'UserController@profile')->name('profile');
 
 Route::post('profile', 'UserController@update_avatar');
 
+Route::get('about', function () {
+    return view('about');
+})->name('about');
+
 Route::resource('posts', 'PostsController');
+
+Route::resource('recipes', 'RecipesController');

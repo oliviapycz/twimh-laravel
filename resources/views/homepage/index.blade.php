@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <section class="title-section">
-            <h2 class="">Posts</h2>
+@include('homepage.landing_page')
+<div class="container-fluid lastrtips">
+    <section id="lasttrips" class="title-section">
+        <h2>Derniers Voyages</h2>
     </section>
-    
     <div class="row justify-content-center">
         @if(count($posts) > 0)
         @foreach($posts as $post)
@@ -30,10 +30,10 @@
               </div>
         </div>
         @endforeach
-        {{$posts->links()}}
       @else
         <p>No Posts yet</p>
       @endif
     <div>
 </div>
+@include('homepage.last_recipes')
 @endsection
