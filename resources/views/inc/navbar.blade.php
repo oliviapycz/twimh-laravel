@@ -7,14 +7,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse row" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav ">
+            <ul class="nav navbar-nav col-md-3">
                 <li class="nav-item"><a class="nav-link" href="/posts">Posts</a></li>
-                <li class="nav-item"><a class="nav-link" href="/receipes">Receipes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/recipes">Recipes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                 
             </ul>
+            <div class="col-md-5">
+                    {!! Form::open(array('rout' => 'queries.search', 'class'=>'form navbar-form  searchform')) !!}
 
+                        {!! Form::text('search', null,
+                                            array('required',
+                                                    'class'=>'form-control',
+                                                    'placeholder'=>'Search by country or user...')) !!}
+                    </div>
+                    <div class="col-md-2">
+                        {!! Form::submit('Search',array('class'=>'btn btn-default')) !!}
+                    </div>
+                        {!! Form::close() !!}
+           
             
 
             <!-- Right Side Of Navbar -->

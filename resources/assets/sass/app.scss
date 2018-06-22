@@ -7,6 +7,31 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+
+.code {
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  p{
+    font-size: 0.9rem;
+    margin-top:0.3rem;
+    margin-bottom:0.5rem;
+  }
+}
+.ide {
+  color: white;
+  background-color: rgb(1, 53, 1);
+  border-radius: 5px;
+  margin-bottom: 2px;
+  li {
+    list-style-type: none
+  }
+  p{
+    font-size: 0.9rem;
+    margin-top:0.3rem;
+    margin-bottom:0.5rem;
+  }
+}
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
