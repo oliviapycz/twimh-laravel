@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <h3 class="col-md-12">Create Post</h3>
+        <h3 class="col-md-12 title-section">Eidt Post</h3>
         <div class="col-md-8">
             {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data'])  !!}
             {{--multipart/form-data enables the BROWSE UPLOAD Button--}}

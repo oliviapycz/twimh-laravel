@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <h3 class="col-md-12">Create Recipe</h3>
+        <h3 class="col-md-12 title-section">Create Recipe</h3>
         <div class="col-md-8">
             {!! Form::open(['action' => 'RecipesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])  !!}
             {{--multipart/form-data enables the BROWSE UPLOAD Button--}}
@@ -20,7 +20,18 @@
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', '', ['id' => 'article-ckeditor', 'class'=>'form-control', 'placeholder' => 'Short Description'])}}
             </div>
+            <div class="form-group">
+                {{Form::label('ingredient', 'Ingredient')}}
+                {{Form::text('ingredients[0][ingredient]', '', ['class'=>'form-control', 'placeholder' => 'ingredient'])}}
+            </div>
+            <div class="form-group add_an_ingredient" style="display: none;">
+              {{Form::label('ingredient', 'Ingredient')}}
+              {{Form::text('ingredients[1][ingredient]', '', ['class'=>'form-control', 'placeholder' => 'ingredient'])}}
+            </div>
 
+            <a class='add_ingredient btn btn-primary' style='color:white'>
+              Add Ingredient
+            </a>
             <div class="form-group">
                 {{Form::label('body', 'Body')}}
                 {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'class'=>'form-control', 'placeholder' => 'Your Recipe'])}}

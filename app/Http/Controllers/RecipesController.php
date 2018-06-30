@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\IngredientsController;
 use App\Recipe;
+use App\Ingredient;
 
 class RecipesController extends Controller
 {
@@ -52,7 +55,8 @@ class RecipesController extends Controller
             'title' => 'required',
             'description' => 'required',
             'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
+            'cover_image' => 'image|nullable|max:1999',
+            'ingredient.*.name' => 'required',
         ]);
 
          // Handle File Upload
@@ -61,7 +65,7 @@ class RecipesController extends Controller
             $fileNameWithExt = $request->file('cover_image')->getClientOriginalName();
             // Get just filename
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            // Get just Eextention
+            // Get just extention
             $extension = $request->file('cover_image')->getClientOriginalExtension();
             //Create filename to store (unique filename)
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
@@ -78,10 +82,13 @@ class RecipesController extends Controller
         $recipe->title = $request->input('title');
         $recipe->description = $request->input('description');
         $recipe->body = $request->input('body');
-        $recipe->user_id = auth()->user()->id;
         $recipe->cover_image = $fileNameToStore;
+        $recipe->user_id = auth()->user()->id;
         $recipe->save();
 
+        //Add ingredients
+        app('App\Http\Controllers\IngredientsController')->addIng($recipe);
+        
         return redirect('/dashboard')->with('success', 'Recipe created');
 
     }
@@ -106,7 +113,14 @@ class RecipesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $recipe = Recipe::find($id);
+
+        //Check for correct user
+        if(auth()->user()->id !== $recipe->user_id) {
+            return redirect('/dashboard')->with('error', 'Unauthorized page');
+        }
+
+        return view('recipes.edit')->with('recipe', $recipe);
     }
 
     /**
@@ -118,7 +132,43 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'country' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'body' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
+          // nullable: so that image is NOT required, max at 1999 to fit in 2MG
+        ]);
+        // Handle file upload
+        if($request->hasFile('cover_image')){
+            // Get a file name with the extension
+            $fileNameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            // Get just Extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            //Create filename to store (unique filename)
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            //Upload the image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+//            ->storeAs('public/cover_images' will store the images in : /storage/app/public
+//            $ php artisan storage:link  will create that private folder in the /public folder and link
+        } 
+
+        // Update Recipe
+        $recipe = Recipe::find($id);
+        $recipe->country = strtoupper($request->input('country'));
+        $recipe->title = $request->input('title');
+        $recipe->description = $request->input('description');
+        $recipe->body = $request->input('body');
+        $recipe->user_id = auth()->user()->id;
+        if($request->hasFile('cover_image')) {
+            $recipe->cover_image = $fileNameToStore;
+        }
+        $recipe->save();
+        
+        return redirect('/dashboard')->with('success', 'Post updated');
     }
 
     /**
@@ -129,6 +179,21 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::find($id);
+
+        //Check for correct user
+        if(auth()->user()->id !== $recipe->user_id) {
+            return redirect('/dashboard')->with('error', 'Unauthorized page');
+        }
+
+        if($recipe->cover_image !== 'noimage.jpg'){
+            // Delete image in Storage
+            Storage::delete('public/cover_images/'.$recipe->cover_images);
+
+
+        }
+
+        $recipe->delete();
+        return redirect('/dashboard')->with('success', 'Post removed');
     }
 }

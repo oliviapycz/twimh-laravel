@@ -31,3 +31,5 @@ Route::get('about', function () {
 Route::resource('posts', 'PostsController');
 
 Route::resource('recipes', 'RecipesController');
+
+Route::resource('ingredients', 'IngredientsController');

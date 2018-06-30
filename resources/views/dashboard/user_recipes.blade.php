@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                         Your Recipes
-                    <a href="/posts/create"><button class="btn btn-success btn-sm">
+                    <a href="/recipes/create"><button class="btn btn-success btn-sm">
                         Add a new Recipe
                     </button></a>
                 </div>
@@ -20,7 +20,7 @@
                     <section class="row " style="margin-bottom:15px">
                         <div class="col-md-3">{{$recipe->country}}</div>
                         <div class="col-md-5">{{$recipe->title}}</div>
-                        <div class="col-md-2"><a href="/recipes/{{$recipe->id}}/edit"><button class="btn btn-primary btn-sm">Edit Post</button></a></div>
+                        <div class="col-md-2"><a href="/recipes/{{$recipe->id}}/edit"><button class="btn btn-primary btn-sm">Edit Recipe</button></a></div>
                         <div class="col-md-2">
                             
                             {!!Form::open(['action' => ['RecipesController@destroy', $recipe->id], 'method' => 'POST'])!!}

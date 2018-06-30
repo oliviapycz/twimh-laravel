@@ -36,6 +36,8 @@
         </div>
     </body>
     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
         <script>
             CKEDITOR.replace( 'article-ckeditor' );
         </script>

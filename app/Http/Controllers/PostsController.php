@@ -153,7 +153,7 @@ class PostsController extends Controller
 //            $ php artisan storage:link  will create that private folder in the /public folder and link
         } 
 
-        // Create Post
+        // Update Post
         $post = Post::find($id);
         $post->country = strtoupper($request->input('country'));
         $post->title = $request->input('title');
