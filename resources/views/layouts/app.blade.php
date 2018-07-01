@@ -16,7 +16,7 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
+        <link href="{{ asset('css/autocomplete.css') }}" rel="Stylesheet">
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
@@ -35,10 +35,29 @@
             </footer>
         </div>
     </body>
-    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    {{--  <script src="{{ asset('js/ckeditor.js') }}"></script>  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <script src="{{ asset('js/script.js') }}" defer></script>
-        <script>
-            CKEDITOR.replace( 'article-ckeditor' );
-        </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+    crossorigin="anonymous"></script>
+    {{--  <script src="{{ asset('js/script.js') }}" defer></script>  --}}
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
+    <script>
+        $("#search_text").autocomplete({
+            source: "search/autocomplete",
+            minLength: 2,
+            select: function(event, ui) {
+                  $('#search_text').val(ui.item.value);
+            }
+      });
+      
+      $(".add_an_ingredient").hide();
+      $(".add_ingredient").click(function() {
+            $(".add_an_ingredient").show();
+            $(".add_ingredient").hide();
+      });
+    </script>
 </html>

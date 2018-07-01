@@ -10411,6 +10411,11 @@ a.text-dark:focus {
   }
 }
 
+.bar-btn-seeall {
+  margin-top: 2vh;
+  background-color: rgba(165, 42, 42, 0.7);
+}
+
 .code {
   color: white;
   background-color: black;

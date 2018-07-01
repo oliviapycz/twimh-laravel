@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests;
 use App\User;
 use App\Post;
+use App\Recipe;
 
 class HomepageController extends Controller
 {
@@ -20,7 +21,8 @@ class HomepageController extends Controller
         //$posts = Post::all();
         // $posts = Post::orderBy('created_at', 'desc')->get();
         $posts = Post::orderBy('created_at', 'desc')->take(6)->get();
+        $recipes = Recipe::orderBy('created_at', 'desc')->take(6)->get();
 
-        return view('homepage.index')->with('posts', $posts);
+        return view('homepage.index')->with('posts', $posts)->with('recipes', $recipes);
     }
 }

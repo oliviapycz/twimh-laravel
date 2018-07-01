@@ -20,6 +20,12 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
+// Route::get('searchbar',array('as'=>'searchbar','uses'=>'SearchbarController@index'));
+Route::get('search/autocomplete', 'SearchbarController@autocomplete');
+Route::get('search/result', 'SearchbarController@result');
+
+// Route::get('searchajax',array('as'=>'searchajax','uses'=>'SearchbarController@autoComplete'));
+
 Route::get('profile', 'UserController@profile')->name('profile');
 
 Route::post('profile', 'UserController@update_avatar');

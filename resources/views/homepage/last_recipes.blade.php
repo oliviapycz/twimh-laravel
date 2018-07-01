@@ -1,141 +1,44 @@
-<div class="container-fluid lasttrips">
-    <section id="lasttrips" class="title-section">
-        <h2>Dernières Recettes</h2>
-    </section>
-    <div class="row justify-content-center">
-
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                        <p>PAYS</p>
-                </div>
-                <div class="card-body row">
-                    <p class="col-md-12">Title: lorem ipsum</p>
-                    <img class="col-md-12" src="{{URL::asset('/images/myanmar.jpg')}}" alt="">
-                    <section class="col-md-12">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                                    Et nihil blanditiis veniam ullam ipsa quidem distinctio iste, laborum, 
-                                    iure hic saepe eum aperiam quibusdam dolorem fuga laudantium est alias corrupti?</p>
-                            <button class=" col-md-4 offset-md-4 btn btn-primary btn-sm">SEE ALL</button>
-                    </section>
-                </div>
-                <div class="card-footer">
-                        <p>Userame</p> 
-                        <p>added 06-06-2018</p>
-                       
-                </div>
+<div class="container-fluid ">
+        <section class="title-section">
+            <h2>Dernières Recettes</h2>
+        </section>
+        <div class="row justify-content-center">
+            @if(count($recipes) > 0)
+            @foreach($recipes as $recipe)
+              <div class="col-md-4">
+                  <div class="card">
+                      <div class="card-header">
+                              <p>{{$recipe->country}}</p>
+                      </div>
+                      <div class="card-body row">
+                          <p class="col-md-12">{{$recipe->title}}</p>
+                          <img class="col-md-12" src="/storage/cover_images/{{$recipe->cover_image}}" alt="">
+                          <section class="col-md-12">
+                                  <p>{{$recipe->description}}</p>
+                                  <a href="/recipes/{{$recipe->id}}"><button class=" col-md-4 offset-md-4 btn btn-secondary btn-sm">SEE</button></a>
+                          </section>
+                      </div>
+                      <div class="card-footer">
+                          <p>by {{$recipe->user->name}}</p> 
+                          <p>added on {{$recipe->created_at->format('d/m/Y')}}</p>
+                            
+                      </div>
+                  </div>
             </div>
+            @endforeach
+          @else
+            <p>No Recipes yet</p>
+          @endif
         </div>
-        <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                            <p>PAYS</p>
-                    </div>
-                    <div class="card-body row">
-                        <p class="col-md-12">Title: lorem ipsum</p>
-                        <img class="col-md-12" src="{{URL::asset('/images/myanmar.jpg')}}" alt="">
-                        <section class="col-md-12">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                                        Et nihil blanditiis veniam ullam ipsa quidem distinctio iste, laborum, 
-                                        iure hic saepe eum aperiam quibusdam dolorem fuga laudantium est alias corrupti?</p>
-                                <button class=" col-md-4 offset-md-4 btn btn-primary btn-sm">SEE ALL</button>
-                        </section>
-                    </div>
-                    <div class="card-footer">
-                            <p>Userame</p> 
-                            <p>added 06-06-2018</p>
-                           
-                    </div>
+        <div class="row">
+                @if(count($recipes) > 5)
+                        
+                        <a href="/recipes" class="col-md-10 offset-md-1 bar-btn-seeall">
+                        <button class="col-md-4 offset-md-4 col-6 offset-3 btn btn-secondary">
+                                SEE ALL RECIPES
+                        </button>
+                        </a>
+        
+                @endif
                 </div>
-            </div>
-            <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                                <p>PAYS</p>
-                        </div>
-                        <div class="card-body row">
-                            <p class="col-md-12">Title: lorem ipsum</p>
-                            <img class="col-md-12" src="{{URL::asset('/images/myanmar.jpg')}}" alt="">
-                            <section class="col-md-12">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                                            Et nihil blanditiis veniam ullam ipsa quidem distinctio iste, laborum, 
-                                            iure hic saepe eum aperiam quibusdam dolorem fuga laudantium est alias corrupti?</p>
-                                    <button class=" col-md-4 offset-md-4 btn btn-primary btn-sm">SEE ALL</button>
-                            </section>
-                        </div>
-                        <div class="card-footer">
-                                <p>Userame</p> 
-                                <p>added 06-06-2018</p>
-                               
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                    <p>PAYS</p>
-                            </div>
-                            <div class="card-body row">
-                                <p class="col-md-12">Title: lorem ipsum</p>
-                                <img class="col-md-12" src="{{URL::asset('/images/myanmar.jpg')}}" alt="">
-                                <section class="col-md-12">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                                                Et nihil blanditiis veniam ullam ipsa quidem distinctio iste, laborum, 
-                                                iure hic saepe eum aperiam quibusdam dolorem fuga laudantium est alias corrupti?</p>
-                                        <button class=" col-md-4 offset-md-4 btn btn-primary btn-sm">SEE ALL</button>
-                                </section>
-                            </div>
-                            <div class="card-footer">
-                                    <p>Userame</p> 
-                                    <p>added 06-06-2018</p>
-                                   
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                        <p>PAYS</p>
-                                </div>
-                                <div class="card-body row">
-                                    <p class="col-md-12">Title: lorem ipsum</p>
-                                    <img class="col-md-12" src="{{URL::asset('/images/myanmar.jpg')}}" alt="">
-                                    <section class="col-md-12">
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                                                    Et nihil blanditiis veniam ullam ipsa quidem distinctio iste, laborum, 
-                                                    iure hic saepe eum aperiam quibusdam dolorem fuga laudantium est alias corrupti?</p>
-                                            <button class=" col-md-4 offset-md-4 btn btn-primary btn-sm">SEE ALL</button>
-                                    </section>
-                                </div>
-                                <div class="card-footer">
-                                        <p>Userame</p> 
-                                        <p>added 06-06-2018</p>
-                                       
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                            <p>PAYS</p>
-                                    </div>
-                                    <div class="card-body row">
-                                        <p class="col-md-12">Title: lorem ipsum</p>
-                                        <img class="col-md-12" src="{{URL::asset('/images/myanmar.jpg')}}" alt="">
-                                        <section class="col-md-12">
-                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                                                        Et nihil blanditiis veniam ullam ipsa quidem distinctio iste, laborum, 
-                                                        iure hic saepe eum aperiam quibusdam dolorem fuga laudantium est alias corrupti?</p>
-                                                <button class=" col-md-4 offset-md-4 btn btn-primary btn-sm">SEE ALL</button>
-                                        </section>
-                                    </div>
-                                    <div class="card-footer">
-                                            <p>Userame</p> 
-                                            <p>added 06-06-2018</p>
-                                           
-                                    </div>
-                                </div>
-                            </div>
-
-    </div>
 </div>
