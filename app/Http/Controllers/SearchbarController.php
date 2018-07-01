@@ -23,7 +23,6 @@ class SearchbarController extends Controller
     public function autocomplete() {
         $term = Input::get('term');
         $results = array();
-        $final_results = array();
         $queryRecipe = DB::table('recipes')
             ->where('country', 'LIKE', '%'.$term.'%')->get();
         $queryPost = DB::table('posts')
@@ -36,7 +35,6 @@ class SearchbarController extends Controller
             $results[] = ['value' => $query->country ];
         }
         $results = array_map("unserialize", array_unique(array_map("serialize", $results)));
-
         return Response::json($results);
     }
 

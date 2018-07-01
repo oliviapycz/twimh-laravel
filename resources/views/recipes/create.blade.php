@@ -20,18 +20,16 @@
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', '', ['class'=>'form-control', 'placeholder' => 'Short Description'])}}
             </div>
-            <div class="form-group">
-                {{Form::label('ingredient', 'Ingredient')}}
-                {{Form::text('ingredients[0][ingredient]', '', ['class'=>'form-control', 'placeholder' => 'ingredient'])}}
+            <div class="input_fields_container">
+                    <a class=' add_more_button btn btn-primary' style='color:white'>
+                        Add Ingredient
+                    </a>
+                <div class="form-group">
+                    {{Form::label('ingredient', 'Ingredient')}}
+                    {{Form::text('ingredients[][ingredient]', '', ['class'=>'form-control', 'placeholder' => 'ingredient'])}}
+                </div>
             </div>
-            <div class="form-group add_an_ingredient" style="display: none;">
-              {{Form::label('ingredient', 'Ingredient')}}
-              {{Form::text('ingredients[1][ingredient]', '', ['class'=>'form-control', 'placeholder' => 'ingredient'])}}
-            </div>
-
-            <a class='add_ingredient btn btn-primary' style='color:white'>
-              Add Ingredient
-            </a>
+            
             <div class="form-group">
                 {{Form::label('body', 'Body')}}
                 {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'class'=>'form-control', 'placeholder' => 'Your Recipe'])}}
