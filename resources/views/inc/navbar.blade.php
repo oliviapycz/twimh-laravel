@@ -15,20 +15,7 @@
                 <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                 
             </ul>
-            {{--  <div class="col-md-5">
-                {!! Form::open(array('rout' => 'queries.search', 'class'=>'form navbar-form  searchform')) !!}
-
-                {!! Form::text('search', null,
-                                    array('required',
-                                            'class'=>'form-control',
-                                            'placeholder'=>'Search by country or user...')) !!}
-            </div>
-            <div class="col-md-2">
-                {!! Form::submit('Search',array('class'=>'btn btn-default')) !!}
-            </div>
-                {!! Form::close() !!}  --}}
-            
-                <div class="col-md-5 row">
+            <div class="col-md-5 row">
                 @include('searchbar.index')
             </div>
             

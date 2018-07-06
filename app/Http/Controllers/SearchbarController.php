@@ -22,7 +22,7 @@ class SearchbarController extends Controller
 
     public function autocomplete() {
         $term = Input::get('term');
-        $results = array();
+        $results = [];
         $queryRecipe = DB::table('recipes')
             ->where('country', 'LIKE', '%'.$term.'%')->get();
         $queryPost = DB::table('posts')

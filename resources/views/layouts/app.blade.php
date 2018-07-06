@@ -35,37 +35,87 @@
             </footer>
         </div>
     </body>
-    {{--  <script src="{{ asset('js/ckeditor.js') }}"></script>  --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.js"
+    type="text/javascript"
+    integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+    crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+    type="text/javascript"
     integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
     crossorigin="anonymous"></script>
-    {{--  <script src="{{ asset('js/script.js') }}" defer></script>  --}}
+
     <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+
     <script>
         CKEDITOR.replace( 'article-ckeditor' );
     </script>
+    
     <script>
+
         $("#search_text").autocomplete({
-            source: "search/autocomplete",
+            source:'{!!URL::route('autocomplete')!!}',
+            //source: "search/autocomplete",
             minLength: 2,
             select: function(event, ui) {
                   $('#search_text').val(ui.item.value);
             }
-      });
+        });
+        
+        $('#searchApifood_0').autocomplete({
+            source:'{!!URL::route('apifoodautocomplete')!!}',
+            minLength: 2,
+            select: function(event, ui) {
+                $('#searchApifood_0').val(ui.item.value);
+            }
+        }); 
 
-      var max_fields_limit      = 10; //set limit for maximum input fields
-      var x = 1; //initialize counter for text box
-      $('.add_more_button').click(function(e){ //click event on add more fields button having class add_more_button
+
+        var index = 0;
+      var max_fields_limit = 15;
+      $('.add_more_button').click(function(e){
           e.preventDefault();
-          if(x < max_fields_limit){ //check conditions
-              x++; //counter increment
-              $('.input_fields_container').append('<div class="form-group">{{Form::label('ingredient', 'Ingredient')}}{{Form::text('ingredients[][ingredient]', '', ['class'=>'form-control', 'placeholder' => 'ingredient'])}}</div>'); //add input field
-          }
-      });  
-      $('.input_fields_container').on("click",".remove_field", function(e){ //user click on remove text links
-          e.preventDefault(); $(this).parent('div').remove(); x--;
-      })
+          // Get last id 
+            var searchApifood_id = $('.input_fields_container input[type=text]:nth-last-child(1)').attr('id');
+            console.log('[addmorebutton] searchApifood_id', searchApifood_id);
 
+            var split_id = searchApifood_id.split('_');
+            console.log('[addmorebutton] split_id', split_id);
+
+            // New index
+            //var index = Number(split_id[1]) + 1;
+            index ++;
+            console.log('[addmorebutton] index', index);
+
+          if(index < max_fields_limit){ //check conditions
+                $('.input_fields_container').append(
+                  '<div class="form-group">{{Form::label('ingredient', 'Ingredient')}}{{Form::text('ingredients[][ingredient]', '', ['class'=>'form-control searchApifood', 'placeholder' => 'ingredient'])}}</div>'
+                ); //add input field
+               
+          }
+          var $child = $('.input_fields_container input[type=text]').last();
+          console.log('$child', $child);
+
+            $child.attr('id', 'searchApifood_'+index);
+          
+                $('#searchApifood_'+index).autocomplete({
+                    //source: "http://localhost:3000/foods/search/result_ing=",
+                    //source: "search/apifood/autocomplete",
+                    source:'{!!URL::route('apifoodautocomplete')!!}',
+                    minLength: 2,
+                    select: function(event, ui) {
+                          $('#searchApifood_'+index).val(ui.item.value);
+                    }
+                });
+            console.log('search', $('#searchApifood_'+index));
+      });  
+
+
+//      $('.input_fields_container').on("click",".remove_field", function(e){ //user click on remove text links
+//          e.preventDefault(); $(this).parent('div').remove();
+//      })
     </script>
 </html>
+

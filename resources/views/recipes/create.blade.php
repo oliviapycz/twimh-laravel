@@ -26,10 +26,18 @@
                     </a>
                 <div class="form-group">
                     {{Form::label('ingredient', 'Ingredient')}}
-                    {{Form::text('ingredients[][ingredient]', '', ['class'=>'form-control', 'placeholder' => 'ingredient'])}}
+                    {{Form::text(
+                        'ingredients[][ingredient]',
+                        null,
+                        [
+                            'class'=>'form-control searchApifood',
+                            'placeholder' => 'ingredient',
+                            'id'=>'searchApifood_0'
+                        ]
+                    )}}
                 </div>
             </div>
-            
+        
             <div class="form-group">
                 {{Form::label('body', 'Body')}}
                 {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'class'=>'form-control', 'placeholder' => 'Your Recipe'])}}
@@ -45,3 +53,4 @@
     </div>
 </div>
 @endsection
+ 

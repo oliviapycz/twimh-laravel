@@ -86,6 +86,9 @@ class RecipesController extends Controller
         $recipe->user_id = auth()->user()->id;
         $recipe->save();
 
+
+        //AutoComplete ingredients
+        app('App\Http\Controllers\IngredientsController')->autocomplete();
         //Add ingredients
         app('App\Http\Controllers\IngredientsController')->addIng($recipe);
         

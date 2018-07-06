@@ -21,7 +21,8 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 // Route::get('searchbar',array('as'=>'searchbar','uses'=>'SearchbarController@index'));
-Route::get('search/autocomplete', 'SearchbarController@autocomplete');
+Route::get('search/autocomplete', ['as' => 'autocomplete', 'uses' =>'SearchbarController@autocomplete']);
+Route::get('search/apifood/autocomplete', ['as' => 'apifoodautocomplete', 'uses' => 'IngredientsController@autocomplete'] );
 Route::get('search/result', 'SearchbarController@result');
 
 // Route::get('searchajax',array('as'=>'searchajax','uses'=>'SearchbarController@autoComplete'));

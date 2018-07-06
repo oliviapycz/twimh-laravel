@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Ingredient;
+use Illuminate\Support\Facades\Response;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
 class IngredientsController extends Controller
 {
@@ -15,7 +18,7 @@ class IngredientsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'autocomplete']]);
     }
 
     /**
@@ -37,7 +40,23 @@ class IngredientsController extends Controller
     {
         //
     }
-
+    public function autocomplete() {
+        $term = Input::get('term');
+         //$term = $request->input('term');
+        //$term = "fr";
+        \Debugbar::info($term);
+        $results = [];
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get('http://localhost:3000/foods/search/result_ing='.$term);
+        $response = $request->getBody();
+        $response = json_decode($response);
+        foreach ($response as $query) {
+            $results[] =  ['value' => $query->food ];
+        }
+        // $results = array_map("unserialize", array_unique(array_map("serialize", $results)));
+        return Response::json($results);
+    }
+   // http://localhost:8000/search/result?search_text=FRANCE
     public function addIng($recipe) {
         $ingredients = [];
         $ing = Input::get('ingredients');
