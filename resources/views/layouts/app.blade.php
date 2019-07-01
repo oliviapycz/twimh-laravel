@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('APP_NAME', 'T.W.I.M.H.') }}</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -47,6 +47,7 @@
     integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
     crossorigin="anonymous"></script>
 
+    
     <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 
     <script>
@@ -72,12 +73,17 @@
             }
         }); 
 
+        
+
 
         var index = 0;
       var max_fields_limit = 15;
       $('.add_more_button').click(function(e){
           e.preventDefault();
           // Get last id 
+          console.log(document.getElementById('searchApifood_0').value);
+          
+          console.log('[addmorebutton] searchApifood_id', searchApifood_id);
             var searchApifood_id = $('.input_fields_container input[type=text]:nth-last-child(1)').attr('id');
             console.log('[addmorebutton] searchApifood_id', searchApifood_id);
 
@@ -88,6 +94,7 @@
             //var index = Number(split_id[1]) + 1;
             index ++;
             console.log('[addmorebutton] index', index);
+            
 
           if(index < max_fields_limit){ //check conditions
                 $('.input_fields_container').append(
@@ -99,7 +106,7 @@
           console.log('$child', $child);
 
             $child.attr('id', 'searchApifood_'+index);
-          
+            console.log('#searchApifood_'+index)
                 $('#searchApifood_'+index).autocomplete({
                     //source: "http://localhost:3000/foods/search/result_ing=",
                     //source: "search/apifood/autocomplete",

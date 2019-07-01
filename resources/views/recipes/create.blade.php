@@ -20,21 +20,28 @@
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', '', ['class'=>'form-control', 'placeholder' => 'Short Description'])}}
             </div>
-            <div class="input_fields_container">
-                    <a class=' add_more_button btn btn-primary' style='color:white'>
-                        Add Ingredient
-                    </a>
-                <div class="form-group">
-                    {{Form::label('ingredient', 'Ingredient')}}
-                    {{Form::text(
-                        'ingredients[][ingredient]',
-                        null,
-                        [
-                            'class'=>'form-control searchApifood',
-                            'placeholder' => 'ingredient',
-                            'id'=>'searchApifood_0'
-                        ]
-                    )}}
+            <div class="row">
+                <div class="col-6">
+                    <div class="input_fields_container">
+                        <a class=' add_more_button btn btn-primary' style='color:white'>
+                            Add Ingredient
+                        </a>
+                    <div class="form-group">
+                        {{Form::label('ingredient', 'Ingredient')}}
+                        {{Form::text(
+                            'ingredients[][ingredient]',
+                            null,
+                            [
+                                'class'=>'form-control searchApifood',
+                                'placeholder' => 'ingredient',
+                                'id'=>'searchApifood_0'
+                            ]
+                        )}}
+                    </div>
+                </div>
+                </div>
+                <div class="col-6">
+
                 </div>
             </div>
         

@@ -47,11 +47,12 @@ class IngredientsController extends Controller
         \Debugbar::info($term);
         $results = [];
         $client = new \GuzzleHttp\Client();
-        $request = $client->get('http://localhost:3000/foods/search/result_ing='.$term);
+        $request = $client->get('http://foodapilaravel.herokuapp.com/api/ingredients/search/result?search_ing='.$term);
         $response = $request->getBody();
+        \Debugbar::info($response);
         $response = json_decode($response);
         foreach ($response as $query) {
-            $results[] =  ['value' => $query->food ];
+            $results[] =  ['value' => $query->title ];
         }
         // $results = array_map("unserialize", array_unique(array_map("serialize", $results)));
         return Response::json($results);
